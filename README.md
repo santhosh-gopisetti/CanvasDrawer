@@ -15,7 +15,7 @@ A simple real-time collaborative canvas drawing app. This project lets multiple 
 
 1.  **Clone the repo**:
     ```bash
-    git clone [https://github.com/your-username/collaborative-canvas.git](https://github.com/your-username/collaborative-canvas.git)
+    git clone [https://github.com/santhosh-gopisetti/CanvasDrawer.git](https://github.com/santhosh-gopisetti/CanvasDrawer.git)
     cd canvasd
     ```
 
@@ -24,10 +24,10 @@ A simple real-time collaborative canvas drawing app. This project lets multiple 
     ```bash
     npm install && npm start
     ```
-    The server will be running at `http://localhost:3000`.
+    The server will be running at `https://canvasdrawer.onrender.com/`.
 
 3.  **Test with Multiple Users**:
-    To test the collaboration features, just **open `http://localhost:3000` in multiple browser tabs**. Each tab will act as a separate user.
+    To test the collaboration features, just **open `https://canvasdrawer.onrender.com/` in multiple browser tabs**. Each tab will act as a separate user.
 
 ## Controls
 
