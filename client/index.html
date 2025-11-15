@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Collaborative Canvas Drawer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header class="toolbar">
+      <div class="toolbar-section">
+        <h1 class="app-title">Canvas Drawer</h1>
+      </div>
+
+      <div class="toolbar-section controls" role="region" aria-label="Drawing controls">
+        <div class="tool-group" role="group" aria-label="Tools">
+          <label>Tool:</label>
+          <button id="brush-btn" class="tool-btn active" data-tool="brush" aria-pressed="true" title="Brush">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path></svg>
+            <span class="sr-only">Brush</span>
+          </button>
+          <button id="eraser-btn" class="tool-btn" data-tool="eraser" aria-pressed="false" title="Eraser">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 20H7L3 16l8-8 4 4 5 5-1 3z"></path><path d="M10 10l7 7"></path></svg>
+            <span class="sr-only">Eraser</span>
+          </button>
+        </div>
+
+        <div class="tool-group" role="group" aria-label="Color">
+          <label for="color-picker">Color:</label>
+          <input type="color" id="color-picker" value="#000000" aria-label="Choose color">
+        </div>
+
+        <div class="tool-group" role="group" aria-label="Width">
+          <label for="width-slider">Width: <span id="width-value">3</span>px</label>
+          <input type="range" id="width-slider" min="1" max="50" value="3" aria-label="Stroke width">
+        </div>
+
+        <div class="tool-group actions" role="group" aria-label="Actions">
+          <button id="undo-btn" class="action-btn" disabled title="Undo">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 7v6h6"></path><path d="M21 17a9 9 0 00-9-9 9 9 0 00-6 2.3L3 13"></path></svg>
+            Undo
+          </button>
+          <button id="redo-btn" class="action-btn" disabled title="Redo">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 7v6h-6"></path><path d="M3 17a9 9 0 019-9 9 9 0 016 2.3l3 2.7"></path></svg>
+            Redo
+          </button>
+          <button id="clear-btn" class="action-btn" title="Clear canvas">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"></path></svg>
+            Clear
+          </button>
+          <button id="save-btn" class="action-btn">
+            Save
+          </button>
+        </div>
+      </div>
+
+      <div class="toolbar-section">
+        <div class="connection-status" aria-live="polite">
+          <span id="connection-indicator" class="status-indicator disconnected" aria-hidden="true"></span>
+          <span id="connection-text">Connecting...</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="main-content">
+      <aside class="sidebar" aria-label="Online users">
+        <h3>Online Users (<span id="user-count">0</span>)</h3>
+        <ul id="user-list" class="user-list" aria-live="polite"></ul>
+      </aside>
+
+      <main class="canvas-container">
+        <canvas id="canvas" tabindex="0" aria-label="Drawing canvas"></canvas>
+        <svg id="cursors-overlay" class="cursors-overlay" aria-hidden="true"></svg>
+      </main>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script type="module" src="main.js"></script>
+</body>
+</html>
